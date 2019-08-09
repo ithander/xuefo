@@ -7,18 +7,7 @@
 			</view>
 		</view> -->
 		
-		<view style="align-content: center;">
-			<form @submit="formSubmit">
-				<view style="">
-			        <input type="text" name="work"  style="border: #000000;background-color: #EBEDF0;min-height: 100upx;min-width: 200upx;font-size: 35rpx;" maxlength="-1"  placeholder="输入功课名称" @input="changeUse"/>
-				</view>
-				<view style="align-content: center;padding-left: 150rpx;padding-bottom: 50rpx;padding-right: 150rpx;padding-top: 50rpx;">
-					<view style="display: flex;align-items: flex-start;">
-			            <button type="primary" form-type="submit" style="min-width: 20upx;" v-bind:disabled="use">添  加 功 课</button>
-					</view>
-				</view>
-			</form>
-		</view>
+		
 		
 	
 		<view>
@@ -28,6 +17,38 @@
 				</view>
 			</uni-list>
 		</view>
+		<view>
+			<uni-fab
+				:pattern="pattern"
+				:horizontal="horizontal"
+				:vertical="vertical"
+				:content="content"
+				:direction="direction"
+				@trigger="trigger"
+			></uni-fab>
+        </view>
+		
+		<view>
+			
+			<uni-popup ref="popup" type="center">
+				<view style="align-content: center;">
+					<form @submit="formSubmit">
+						<view style="">
+					        <input type="text" name="work"  style="border: #000000;background-color: #EBEDF0;min-height: 50upx;min-width: 200upx;font-size: 35rpx;" maxlength="-1"  placeholder="输入功课名称" @input="changeUse"/>
+						</view>
+						<view style="align-content: center;">
+							<view style="display: flex;padding-top: 50upx;padding: 30upx;">
+								<button type="default" @click="closePopup" style="min-width: 20upx;" >取消</button>
+					            <button type="primary" form-type="submit" style="min-width: 20upx;" v-bind:disabled="use">确定</button>
+							</view>
+						</view>
+					</form>
+				</view>
+			</uni-popup>
+		</view>
+		
+		
+		
 	</view>
 	
 </template>
@@ -35,11 +56,15 @@
 
 import uniList from '@/components/uni-list/uni-list.vue'
 import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
+import uniFab from '@/components/uni-fab/uni-fab.vue';
+import uniPopup from "@/components/uni-popup/uni-popup.vue"
 
 	export default {
 		components: {
 			uniList,
-			uniListItem
+			uniListItem,
+			uniFab,
+			uniPopup
 		},
 		onShow() {
 			this.works=uni.getStorageSync('works')||[]
@@ -49,7 +74,24 @@ import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 				title: 'form',
 			    works:uni.getStorageSync('works')||[],
 				doworks:uni.getStorageSync('doworks')||[],
-				use:true
+				use:true,
+				horizontal: 'right',
+				vertical: 'bottom',
+				direction: 'vertical',
+				pattern: {
+					color: '#7A7E83',
+					backgroundColor: '#fff',
+					selectedColor: '#007AFF',
+					buttonColor:"#007AFF"
+				},
+				content: [
+                {
+                    iconPath: '/static/img/a_book.png',
+                    selectedIconPath: '/static/img/a_book.png',
+                    text: '功课',
+                    active: false
+					
+                }]
 			}
 		},
 		onNavigationBarButtonTap:function(){
@@ -59,6 +101,7 @@ import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 		},
 		methods: {
 			formSubmit:function(e){
+				this.closePopup()
 				this.works.push(e.target.value.work.trim())
 				this.doworks.push({"work":e.target.value.work.trim(),"date":this.getDate(),"value":"0"})
 			    uni.setStorageSync('works',this.works)
@@ -94,6 +137,20 @@ import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 				if(''!=e.target.value.trim()){
 					this.use=false
 				}
+			},
+			trigger:function(e){
+				
+				switch(e.index){
+					case 0:{
+						this.openPopup();
+					}break;
+				}
+			},
+			openPopup(){
+				this.$refs.popup.open()
+			},
+			closePopup(){
+				this.$refs.popup.close()
 			}
 		}
 	}

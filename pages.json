@@ -29,6 +29,7 @@
                     "titleNView": {
                         "buttons": [ //原生标题栏按钮配置,
                             {
+								"fontSize":"12",
                                 "text": "设置" //原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
                             }
                         ]

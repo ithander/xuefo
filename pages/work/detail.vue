@@ -3,12 +3,12 @@
             <view class="text-box" scroll-y="true">
                 <text style="align-content: center;">{{text}}</text>
             </view>
-            <view class="btns">
+           <!-- <view class="btns">
 				<button type="primary" size="mini" @tap="addValue(1000)">加1000</button>
 				<button type="primary" size="mini" @tap="addValue(100)">加100</button>
 				<button type="primary" size="mini" @tap="addValue(10)">加10</button>
                 <button type="primary" size="mini" @tap="addValue(1)">加1</button>
-            </view>
+            </view> -->
 			<view>
 				<button type="default" @tap="back">返回</button>
 			</view>
@@ -19,6 +19,16 @@
 					</scroll-view>
 				</uni-list>
 			</view>
+			<view>
+				<uni-fab
+					:pattern="pattern"
+					:horizontal="horizontal"
+					:vertical="vertical"
+					:content="content"
+					:direction="direction"
+					@trigger="trigger"
+				></uni-fab>
+			</view>
     </view>
 	
 </template>
@@ -26,8 +36,9 @@
 <script>
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
+	import uniFab from '@/components/uni-fab/uni-fab.vue'
 	export default {
-			components: {uniList,uniListItem},
+			components: {uniList,uniListItem,uniFab},
 			onShow:function(){
 				
 				var date=this.getDate();
@@ -76,7 +87,34 @@
 					works:uni.getStorageSync('works')||[],
 					months:[],
 					doworks:uni.getStorageSync('doworks')||[],
-					today:{}
+					today:{},
+					horizontal: 'right',
+					vertical: 'bottom',
+					direction: 'vertical',
+					pattern: {
+						color: '#7A7E83',
+						backgroundColor: '#fff',
+						selectedColor: '#007AFF',
+						buttonColor:"#007AFF"
+					},
+					content: [
+					{
+					    text: '加1',
+					    active: false
+						
+					},{
+					    text: '加10',
+					    active: false
+						
+					},{
+					    text: '加100',
+					    active: false
+						
+					},{
+					    text: '加1000',
+					    active: false
+						
+					}]
 				}
 			},
 			methods: {
@@ -132,6 +170,23 @@
 								  if(begin-end>0){
 									 return true;
 								  }
+							},
+							trigger:function(e){
+								
+								switch(e.index){
+									case 0:{
+										this.addValue(1)
+									}break;
+									case 1:{
+										this.addValue(10)
+									}break;
+									case 2:{
+										this.addValue(100)
+									}break;
+									case 3:{
+										this.addValue(1000)
+									}break;
+								}
 							}
 			}
 		}

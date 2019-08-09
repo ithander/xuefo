@@ -4,12 +4,15 @@
   "titleNView": {
     "buttons": [
       {
+        "fontSize": "12",
         "text": "设置"
       }
     ]
   },
   "usingComponents": {
     "uni-list": "/components/uni-list/uni-list",
-    "uni-list-item": "/components/uni-list-item/uni-list-item"
+    "uni-list-item": "/components/uni-list-item/uni-list-item",
+    "uni-fab": "/components/uni-fab/uni-fab",
+    "uni-popup": "/components/uni-popup/uni-popup"
   }
 }

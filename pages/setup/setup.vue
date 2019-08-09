@@ -27,7 +27,7 @@
 		methods: {
 			
 			checkUpdate:function(){
-				var localVersion=1;
+				var localVersion=2;
 				uni.request({
 					url: 'http://www.yifankb.com/update.json', //仅为示例，并非真实接口地址。
 					header:{
