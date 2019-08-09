@@ -69,6 +69,13 @@
                                     }    
                                 });  
                             dtask.start();   
+						}else{
+							uni.showToast({  
+							    title: '己是最新版本',  
+							    mask: false,  
+							    duration: 5000,  
+							    icon:"none"  
+							});  
 						}
 					}
 				});
