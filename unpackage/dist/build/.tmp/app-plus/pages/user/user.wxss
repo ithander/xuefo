@@ -1,0 +1,14 @@
+
+.btns{
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		padding: 50rpx 50rpx 50rpx 50rpx;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		    -ms-flex-align: center;
+		        align-items: center;
+		text-align: center;
+}
+

@@ -1,0 +1,98 @@
+{
+    "pages": [ //pages数组中第一项表示应用启动页,
+        {
+            "path": "pages/main/main",
+            "style": {
+                "navigationBarTitleText": "修行统计"
+            }
+        }, {
+            "path": "pages/main/detail",
+            "style": {
+                "navigationBarTitleText": "修行记录"
+            }
+        },     {
+            "path": "pages/work/work",
+            "style": {
+                "navigationBarTitleText": "今日功课"
+            }
+		},{
+			"path":"pages/work/detail",
+			"style": {
+			    "navigationBarTitleText": "功课详情"
+			}
+		},{
+            "path": "pages/user/user",
+            "style": {
+                "navigationBarTitleText": "我的功课",
+				"app-plus": {
+                    "bounce": "none", //关闭窗口回弹效果,
+                    "titleNView": {
+                        "buttons": [ //原生标题栏按钮配置,
+                            {
+                                "text": "设置" //原生标题栏增加分享按钮，点击事件可通过页面的 onNavigationBarButtonTap 函数进行监听
+                            }
+                        ]
+                    }
+                }
+            }
+        },{
+            "path": "pages/user/edit",
+            "style": {
+                "navigationBarTitleText": "编辑功课"
+            }
+        }      
+        ,{
+            "path" : "pages/zouzi/zouzi",
+            "style" : {"navigationBarTitleText": "佛咒"}
+        }
+        ,{
+            "path" : "pages/book/book",
+            "style" : {"navigationBarTitleText": "佛经"}
+        } ,{
+            "path" : "pages/book/index",
+            "style" : {"navigationBarTitleText": "经藏"}
+        },{
+            "path" : "pages/book/list",
+            "style" : {"navigationBarTitleText": "经书"}
+        }
+        ,{
+            "path" : "pages/setup/setup",
+            "style" : {
+				"navigationBarTitleText": "设置"
+			}
+        }
+    ],
+    "tabBar": {
+        "color": "#7a7e83",
+        "selectedColor": "#0faeff",
+        "backgroundColor": "#ffffff",
+        "list": [{
+            "pagePath": "pages/main/main",
+            "text": "修行统计",
+            "iconPath": "static/img/stats.png",
+            "selectedIconPath": "static/img/stats.png"
+        }, {
+            "pagePath": "pages/work/work",
+            "text": "今日功课",
+            "iconPath": "static/img/a_book.png",
+            "selectedIconPath": "static/img/a_book.png"
+        }/* , {
+            "pagePath": "pages/book/index",
+            "text": "经藏",
+            "iconPath": "static/img/book.png",
+            "selectedIconPath": "static/img/book.png"
+        } */, {
+            "pagePath": "pages/user/user",
+            "text": "我的功课",
+            "iconPath": "static/img/user.png",
+            "selectedIconPath": "static/img/userHL.png"
+        }]
+    },
+    "globalStyle": {
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#0faeff",
+        "backgroundColor": "#fbf9fe",
+		"enablePullDownRefresh":false
+		
+    }
+}
