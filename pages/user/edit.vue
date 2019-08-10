@@ -1,17 +1,18 @@
 <template>
 	<view>
-		<view style="align-content: center;padding-left: 250rpx;padding-bottom: 100rpx;padding-top: 100rpx;">
-			<text >{{work}}</text>
-		</view>
-		
-		<view style="align-content: center;padding-left: 50rpx;padding-bottom: 100rpx;padding-right: 50rpx;">
+		<form @submit="save">
+			<view style="align-content: center;padding-bottom: 100rpx;padding-top: 100rpx;">
+					<input v-bind:value="value" name="work" style="background-color: #D4D4D4;min-height: 100upx;font-size: 45upx;" />
+			</view>
 			
-			<button type="warn" @tap="del">删除</button>
-		</view>
-		<view style="align-content: center;padding-left: 50rpx;padding-bottom: 100rpx;padding-right: 50rpx;">
-		     <button type="warn" @tap="clear">清除计数</button>
-		</view>
-		
+			<view style="align-content: center;padding-left: 50rpx;padding-bottom: 100rpx;padding-right: 50rpx;display: flex;">
+				<button type="warn" @tap="del">删 除</button>
+				<button type="warn" @tap="clear">清除计数</button>
+			</view>
+			<view style="align-content: center;padding-left: 50rpx;padding-bottom: 100rpx;padding-right: 50rpx;">
+				 <button type="primary" form-type="submit">保 存</button>
+			</view>
+		</form>
 	</view>
 </template>
 
@@ -20,13 +21,15 @@
 	export default {
 		onLoad:function(option) {
 			this.work=option.work
+			this.value=option.work
 		},
 		onShow:function(){
 			
 		},
 		data(){
 			return {
-				work:""
+				work:"",
+				value:""
 			}
 		},
 		methods:{
@@ -55,6 +58,21 @@
 					}
 					uni.setStorageSync('doworks',newworks)
 				}
+			},
+			save:function(e){
+				this.value=e.target.value.work.trim();
+				var works=uni.getStorageSync('works')||[]
+				if(works){
+					for(var i in works){
+						if(works[i]==this.work){
+							console.log(this.$mp)
+							works[i]=this.value
+							this.work=this.value
+						}
+					}
+					uni.setStorageSync('works',works)
+				}
+				 uni.navigateBack()	
 			}
 		}
 	}
