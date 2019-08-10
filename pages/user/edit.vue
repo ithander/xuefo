@@ -1,15 +1,16 @@
 <template>
 	<view>
 		<form @submit="save">
-			<view style="align-content: center;padding-bottom: 100rpx;padding-top: 100rpx;">
+			<view style="align-content: center;padding-bottom: 10rpx;padding-top: 100rpx;">
+				    <label>功课名称：</label>
 					<input v-bind:value="value" name="work" style="background-color: #D4D4D4;min-height: 100upx;font-size: 45upx;" />
 			</view>
-			
-			<view style="align-content: center;padding-left: 50rpx;padding-bottom: 100rpx;padding-right: 50rpx;display: flex;">
+						
+			<view style="align-content: center;padding-left: 50rpx;padding-bottom: 50rpx;padding-right: 50rpx;display: flex;padding-top: 100rpx;">
 				<button type="warn" @tap="del">删 除</button>
 				<button type="warn" @tap="clear">清除计数</button>
 			</view>
-			<view style="align-content: center;padding-left: 50rpx;padding-bottom: 100rpx;padding-right: 50rpx;">
+			<view style="align-content: center;padding-left: 150rpx;padding-bottom: 100rpx;padding-right: 150rpx;">
 				 <button type="primary" form-type="submit">保 存</button>
 			</view>
 		</form>
